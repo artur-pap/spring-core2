@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <import resource="daodomain.xml"/>
+    <import resource="discounts.xml" />
+    <import resource="aspects.xml" />
+
+    <bean id="auditoriumService" class="ru.apapikyan.learn.spring.core.hometask.service.impl.AuditoriumServiceImpl">
+        <constructor-arg ref="auditoriumDAO"/>
+    </bean>
+
+    <bean id="userService" class="ru.apapikyan.learn.spring.core.hometask.service.impl.UserServiceImpl">
+        <constructor-arg ref="userDAO"/>
+    </bean>
+
+    <bean id="eventService" class="ru.apapikyan.learn.spring.core.hometask.service.impl.EventServiceImpl2" />
+
+    <bean id="discountService" class="ru.apapikyan.learn.spring.core.hometask.service.impl.DiscountServiceImpl" depends-on="eventService">
+        <constructor-arg index="0" ref="discounts"/>
+        <constructor-arg ref="eventService"/>
+    </bean>
+
+    <bean id="bookingService" class="ru.apapikyan.learn.spring.core.hometask.service.impl.BookingServiceImpl" depends-on="eventService, discountService">
+        <constructor-arg index="0" ref="bookingDAO"/>
+        <constructor-arg index="1" ref="eventService"/>
+        <constructor-arg index="2" ref="discountService"/>
+    </bean>
+
+
+
+</beans>

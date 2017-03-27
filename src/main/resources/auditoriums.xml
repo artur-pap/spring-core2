@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="auditorium1" class="ru.apapikyan.learn.spring.core.hometask.domain.Auditorium">
+        <constructor-arg index="0" value="${aud1.vipSeats}" />
+
+
+        <property name="id" value="${aud1.id}" />
+        <property name="name" value="${aud1.name}" />
+        <property name="numberOfSeats" value="${aud2.numberOfSeats}" />
+        <property name="vipFactor" value="${aud1.vipFactor}" />
+    </bean>
+
+    <bean id="auditorium2" class="ru.apapikyan.learn.spring.core.hometask.domain.Auditorium">
+        <constructor-arg index="0" value="${aud2.vipSeats}" />
+
+        <property name="id" value="${aud2.id}" />
+        <property name="name" value="${aud2.name}" />
+        <property name="numberOfSeats" value="${aud2.numberOfSeats}" />
+        <property name="vipFactor" value="${aud2.vipFactor}" />
+    </bean>
+
+    <bean id="auditorium3" class="ru.apapikyan.learn.spring.core.hometask.domain.Auditorium">
+        <constructor-arg index="0" value="${aud3.vipSeats}" />
+
+        <property name="id" value="${aud3.id}" />
+        <property name="name" value="${aud3.name}" />
+        <property name="numberOfSeats" value="${aud3.numberOfSeats}" />
+        <property name="vipFactor" value="${aud3.vipFactor}" />
+    </bean>
+
+    <util:list id="auditoriumsList">
+        <ref bean="auditorium1" />
+        <ref bean="auditorium2" />
+        <ref bean="auditorium3" />
+    </util:list>
+
+</beans>

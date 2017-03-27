@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="discount.birthday" class="ru.apapikyan.learn.spring.core.hometask.service.logic.BirthdayDiscount">
+        <constructor-arg value="50"/>
+    </bean>
+    <bean id="discount.every10th" class="ru.apapikyan.learn.spring.core.hometask.service.logic.Every10thDiscount">
+        <constructor-arg value="75"/>
+    </bean>
+
+    <util:list id="discounts">
+        <ref bean="discount.birthday"/>
+        <ref bean="discount.every10th"/>
+    </util:list>
+
+</beans>

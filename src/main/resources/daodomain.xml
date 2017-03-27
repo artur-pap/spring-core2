@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <import resource="auditoriums.xml" />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+        <property name="locations">
+            <list>
+                <value>classpath:data/auditoriums-all.properties</value>
+                <value>classpath:testproperties.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Events -->
+    <util:properties id="props.event1" location="classpath:data/event1.properties"/>
+    <util:properties id="props.event2" location="classpath:data/event2.properties"/>
+    <util:properties id="props.event3" location="classpath:data/event3.properties"/>
+
+    <util:list id="events">
+        <ref bean="props.event1"/>
+        <ref bean="props.event2"/>
+        <ref bean="props.event3"/>
+    </util:list>
+
+    <bean id="airEventDAO" class="ru.apapikyan.learn.spring.core.hometask.dao.memory.AirEventDAOImpl" />
+
+    <bean id="auditoriumDAO" class="ru.apapikyan.learn.spring.core.hometask.dao.memory.AuditoriumDAOImpl">
+        <constructor-arg ref="auditoriumsList" />
+    </bean>
+
+    <bean id="bookingDAO" class="ru.apapikyan.learn.spring.core.hometask.dao.memory.BookingDAOImpl" />
+
+    <bean id="eventDAO" class="ru.apapikyan.learn.spring.core.hometask.dao.memory.EventDAOImpl">
+        <constructor-arg ref="events" />
+    </bean>
+
+    <bean id="userDAO" class="ru.apapikyan.learn.spring.core.hometask.dao.memory.UserDAOImpl" />
+
+</beans>

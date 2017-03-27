@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xmlns:p = "http://www.springframework.org/schema/p"
+       xmlns:c = "http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package = "ru.apapikyan.learn.spring.core.hometask" />
+
+    <bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value = "org.postgresql.Driver" />
+        <property name="url" value = "jdbc:postgresql://localhost:5432/spring" />
+        <property name="username" value = "spring" />
+        <property name="password" value = "spring" />
+    </bean>
+
+</beans>
